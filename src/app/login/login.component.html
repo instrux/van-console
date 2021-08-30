@@ -1,0 +1,90 @@
+<div class="login-layout" nz-row nzJustify="center">
+  <div nz-col nzFlex="600px">
+    <nz-card class="login-content">
+      <div class="logo">
+        <img src="/assets/logo.svg" alt="ng-zorro" />
+      </div>
+      <h1>打造一体化数据运营平台</h1>
+      <form [formGroup]="form" nz-form (bitFormSubmit)="submit($event)">
+        <nz-form-item>
+          <nz-form-control
+            [nzAutoTips]="{
+              default: {
+                required: '用户名是必填项',
+                minlength: '用户名格式不规范',
+                maxlength: '用户名格式不规范'
+              }
+            }"
+          >
+            <nz-input-group [nzSuffix]="usernameSuffix" nzPrefixIcon="user">
+              <input type="text" nz-input formControlName="username" placeholder="用户名" />
+              <ng-template #usernameSuffix>
+                <i
+                  *ngIf="form.get('username')!.value"
+                  nz-icon
+                  nzType="close-circle"
+                  (click)="form.get('username')!.reset()"
+                >
+                </i>
+              </ng-template>
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control
+            [nzAutoTips]="{
+              default: {
+                required: '口令是必填项',
+                minlength: '口令格式不规范',
+                maxlength: '口令格式不规范'
+              }
+            }"
+          >
+            <nz-input-group [nzSuffix]="passwordSuffix" nzPrefixIcon="lock">
+              <input
+                nz-input
+                type="password"
+                formControlName="password"
+                autocomplete="new-password"
+                placeholder="口令"
+              />
+            </nz-input-group>
+            <ng-template #passwordSuffix>
+              <i
+                *ngIf="form.get('password')!.value"
+                nz-icon
+                nzType="close-circle"
+                (click)="form.get('password')!.reset()"
+              >
+              </i>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control>
+            <button nz-button nzBlock nzType="primary">
+              <i nz-icon nzType="login"></i>
+              登 录
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </nz-card>
+    <footer>
+      <nz-space [nzSplit]="split">
+        <ng-template #split>
+          <nz-divider nzType="vertical"></nz-divider>
+        </ng-template>
+        <a *nzSpaceItem nz-typography>案例</a>
+        <a *nzSpaceItem nz-typography>BSD-3-Clause License</a>
+      </nz-space>
+      <p nz-typography>
+        <i nz-icon nzType="copyright"></i>
+        <span> {{ now }} Developed by </span>
+        <a href="https://github.com/kainonly" target="_blank"> <b>KAIN </b> <i nz-icon nzType="github"></i></a>
+      </p>
+    </footer>
+  </div>
+</div>
